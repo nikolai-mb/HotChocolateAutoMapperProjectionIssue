@@ -8,7 +8,7 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Driver, DriverDto>();
-        CreateMap<Vehicle, VehicleDto>();
+        CreateMap<Driver, DriverDto>().ForAllMembers(i => i.ExplicitExpansion());
+        CreateMap<Vehicle, VehicleDto>().ForAllMembers(i => i.ExplicitExpansion());
     }
 }
