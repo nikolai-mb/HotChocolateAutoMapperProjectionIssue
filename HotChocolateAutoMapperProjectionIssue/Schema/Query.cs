@@ -9,6 +9,7 @@ public class Query
 {
     [UseDbContext(typeof(AutomobileRepository))]
     [UseProjection]
+    [UseFiltering]
     public IQueryable<DriverDto> Drivers(
         [ScopedService] AutomobileRepository repository,
         IResolverContext context)
