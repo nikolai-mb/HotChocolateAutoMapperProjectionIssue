@@ -15,6 +15,7 @@ IMapper mapper = mapperConfig.CreateMapper();
 
 builder.Services.AddGraphQLServer()
     .AddQueryType<Query>()
+    .AddFiltering()
     .AddProjections();
 
 builder.Services.AddSingleton(mapper);
