@@ -3,15 +3,19 @@ using HotChocolateAutoMapperProjectionIssue.Repository;
 using HotChocolateAutoMapperProjectionIssue.Schema;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Reflection;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
+
+IMapper mapper = mapperConfig.CreateMapper();
 
 builder.Services.AddGraphQLServer()
     .AddQueryType<Query>()
     .AddProjections();
+
+builder.Services.AddSingleton(mapper);
 
 builder.Services.AddPooledDbContextFactory<AutomobileRepository>(contextOptions =>
 {
