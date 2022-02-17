@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
 
+mapperConfig.AssertConfigurationIsValid();
+
 IMapper mapper = mapperConfig.CreateMapper();
 
 builder.Services.AddGraphQLServer()
